@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pranaa CRM - Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f6f9;
+      color: #333;
+    }
+    header {
+      background: #2d6a4f;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    nav {
+      background: #40916c;
+      padding: 10px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li {
+      margin: 0 15px;
+      color: white;
+      cursor: pointer;
+    }
+    main {
+      padding: 20px;
+    }
+    section {
+      background: white;
+      margin: 15px auto;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+      max-width: 800px;
+    }
+    h2 {
+      color: #2d6a4f;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #2d6a4f;
+      color: white;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Pranaa CRM</h1>
+    <p>Transforming Spaces, Infusing Life</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li onclick="showSection('dashboard')">Dashboard</li>
+      <li onclick="showSection('customers')">Customers</li>
+      <li onclick="showSection('vendors')">Vendors</li>
+      <li onclick="showSection('projects')">Projects</li>
+      <li onclick="showSection('finance')">Finance</li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="dashboard">
+      <h2>Dashboard</h2>
+      <p>Active Projects: <span id="active-projects">0</span></p>
+      <p>Total Customers: <span id="total-customers">0</span></p>
+      <p>Monthly Revenue: ₹<span id="monthly-revenue">0</span></p>
+    </section>
+
+    <section id="customers" style="display:none;">
+      <h2>Customers</h2>
+      <p>Manage all customers here.</p>
+    </section>
+
+    <section id="vendors" style="display:none;">
+      <h2>Vendors</h2>
+      <p>Manage your vendor database here.</p>
+    </section>
+
+    <section id="projects" style="display:none;">
+      <h2>Projects</h2>
+      <p>Track all your projects here.</p>
+    </section>
+
+    <section id="finance" style="display:none;">
+      <h2>Finance</h2>
+      <p>View financial reports and invoices here.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Pranaa CRM</p>
+  </footer>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll("main section").forEach(s => s.style.display = "none");
+      document.getElementById(id).style.display = "block";
+    }
+  </script>
+</body>
+</html>
