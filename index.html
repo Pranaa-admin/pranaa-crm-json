@@ -78,17 +78,20 @@
       <h2>Dashboard</h2>
       <p>Active Projects: <span id="active-projects">0</span></p>
       <p>Total Customers: <span id="total-customers">0</span></p>
+      <p>Total Quotations: <span id="total-quotes">0</span></p>
+      <p>Successful Quotations: <span id="successful-quotes">0</span></p>
       <p>Monthly Revenue: ₹<span id="monthly-revenue">0</span></p>
+      <p>Total Vendors: <span id="total-vendors">0</span></p>
     </section>
 
     <section id="customers" style="display:none;">
       <h2>Customers</h2>
-      <p>Manage all customers here.</p>
+      <div id="customer-list">Loading customers...</div>
     </section>
 
     <section id="vendors" style="display:none;">
       <h2>Vendors</h2>
-      <p>Manage your vendor database here.</p>
+      <div id="vendor-list">Loading vendors...</div>
     </section>
 
     <section id="projects" style="display:none;">
@@ -111,6 +114,26 @@
       document.querySelectorAll("main section").forEach(s => s.style.display = "none");
       document.getElementById(id).style.display = "block";
     }
-  </script>
-</body>
-</html>
+
+    // Fetch JSON Data
+    async function loadData() {
+      try {
+        const response = await fetch("index.json"); // JSON must be in repo root
+        const data = await response.json();
+
+        // Example: Fill dashboard with values from JSON
+        document.getElementById("active-projects").textContent = data.page.content.activeProjects || 0;
+        document.getElementById("total-customers").textContent = data.page.content.totalCustomers || 0;
+        document.getElementById("total-quotes").textContent = data.page.content.totalQuotations || 0;
+        document.getElementById("successful-quotes").textContent = data.page.content.successfulQuotations || 0;
+        document.getElementById("monthly-revenue").textContent = data.page.content.monthlyRevenue || 0;
+        document.getElementById("total-vendors").textContent = data.page.content.totalVendors || 0;
+
+        // Example Customers & Vendors (if available)
+        if (data.page.content.customers) {
+          document.getElementById("customer-list").innerHTML = 
+            "<ul>" + data.page.content.customers.map(c => `<li>${c.name} - ${c.email}</li>`).join("") + "</ul>";
+        }
+        if (data.page.content.vendors) {
+          document.getElementById("vendor-list").innerHTML = 
+            "<ul>" + data.page.content.vendors.m
